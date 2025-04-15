@@ -6,7 +6,7 @@
             <i class="fas fa-balloon fa-2x text-danger"></i>
             <i class="fas fa-gift fa-2x text-warning"></i>
         </div>
-        <h1 class="mb-4">Vítejte na páááárty!</br>Co si přejete udělat?</h1>
+        <h1 class="mb-4">Vítejte na páááárty!<br>Co si přejete udělat?</h1>
 
         <!-- Logout tlačítko pro přihlášené -->
         @auth
