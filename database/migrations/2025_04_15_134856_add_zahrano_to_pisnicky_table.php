@@ -9,20 +9,17 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::table('pisnicky', function (Blueprint $table) {
-            //
+            $table->boolean('zahrano')->default(false); // Přidání sloupce pro stav "zahráno"
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    public function down()
     {
         Schema::table('pisnicky', function (Blueprint $table) {
-            //
+            $table->dropColumn('zahrano');
         });
     }
 };

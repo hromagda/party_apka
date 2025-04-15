@@ -7,6 +7,9 @@
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
 
+//Bootstrap ikony
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
 body {
     background: #e3f2fd; /* světle modrá */
     text-align: center;
@@ -19,6 +22,8 @@ h1, h2, h3 {
     font-weight: bold;
 }
 
+
+//WELCOME sablona
 .welcome-container {
     max-width: 440px;
     margin: 0 auto;
@@ -60,4 +65,112 @@ h1, h2, h3 {
 .icons i {
     font-size: 50px;
     margin: 0 10px;
+}
+
+.container {
+    background-color: #e3f2fd; /* Světle modrá */
+}
+
+.list-group-item.bg-success {
+    background-color: #3498db !important;
+    color: white !important;
+}
+
+.btn-warning {
+    background-color: #f39c12;
+    color: white;
+}
+
+//PISNICKY sablona
+.pisnicky-container {
+    background-color: #e3f2fd;
+    padding: 1rem;
+
+    // Jen nadpis má být krasopis
+    h2 {
+        font-family: 'Dancing Script', cursive;
+        color: #64b5f6;
+        font-size: 2.5rem;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 1.5rem;
+    }
+}
+
+.pisnicky-title {
+    color: #64b5f6;
+    font-family: 'Dancing Script', cursive; /* This font is applied to both the song request and list titles */
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.pisnicky-form {
+    max-width: 600px;
+    margin: 0 auto;
+    font-family: 'Segoe UI', sans-serif; // normální písmo pro form
+}
+
+.pisnicky-form label,
+.pisnicky-form button {
+    font-weight: bold;
+    font-size: 1.2rem;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.pisnicky-list {
+    max-width: 800px;
+    margin: 2rem auto;
+    font-family: 'Segoe UI', sans-serif;
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th {
+        background-color: #64b5f6;
+        color: white;
+        text-align: left;
+        padding: 0.75rem;
+    }
+
+    td {
+        background-color: white;
+        padding: 0.75rem;
+        border-bottom: 1px solid #ccc;
+    }
+
+    // Vylepšení pro zahrané písničky
+    tr.zahrano {
+        background-color: #d1c4e9 !important; /* světle fialová */
+        font-style: italic;
+        font-weight: bold; /* Tučný text pro lepší vizuální důraz */
+        color: #6a1b9a; /* Tmavší fialová pro text */
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Jemný stín pro zvýraznění řádku */
+    }
+
+    td.zahrano-text {
+        color: #6a1b9a; /* Tmavší fialová pro text */
+        font-weight: bold;
+    }
+}
+
+//Tlacitko zpet domu
+.back-arrow {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #0d47a1;
+    text-decoration: none;
+
+    i {
+        color: #64b5f6;
+        font-size: 1.4rem;
+        margin-right: 0.3rem;
+    }
+
+    &:hover {
+        text-decoration: underline;
+    }
 }

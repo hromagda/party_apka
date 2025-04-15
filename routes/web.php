@@ -9,12 +9,17 @@ use Illuminate\Support\Facades\Route;
 
 // Welcome stránka pro všechny (hosté i přihlášení)
 Route::get('/', function () {
-return view('welcome');
-});
+    return view('welcome');
+})->name('home');
 
 // Přístupné pro všechny (hosté i přihlášení)
 Route::get('/pisnicky', [PisnickaController::class, 'index'])->name('pisnicky.index');
 Route::post('/pisnicky', [PisnickaController::class, 'store'])->name('pisnicky.store'); // bez middleware, povoleno i hostům
+
+// Ochráněné routy pro označení písničky jako zahrané (pouze pro přihlášené s rolí)
+Route::middleware(['auth', 'role:dj|admin'])->group(function () {
+    Route::post('/pisnicky/{id}/zahrano', [PisnickaController::class, 'oznacitZahranou'])->name('pisnicky.zahrano');
+});
 
 Route::get('/vzkazy', [VzkazController::class, 'index'])->name('vzkazy.index');
 Route::post('/vzkazy', [VzkazController::class, 'store'])->name('vzkazy.store'); // taky pro všechny
