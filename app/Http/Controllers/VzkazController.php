@@ -3,22 +3,30 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Vzkaz;
+use App\Http\Requests\VzkazStoreRequest;
 
 class VzkazController extends Controller
 {
     public function index()
     {
-        return view('vzkazy', ['vzkazy' => \App\Models\Vzkaz::all()]);
+        $vzkazy = Vzkaz::latest()->paginate(10);
+
+        $barvy = [
+            '#ce93d8', // světle fialová
+            '#ba68c8', // základní fialová
+            '#ab47bc',
+            '#9c27b0',
+            '#8e24aa'
+        ];
+
+
+        return view('vzkazy', compact('vzkazy', 'barvy'));
     }
 
-    public function store(Request $request)
+    public function store(VzkazStoreRequest $request)
     {
-        $request->validate([
-            'jmeno' => 'required',
-            'text' => 'required',
-        ]);
-
-        \App\Models\Vzkaz::create($request->all());
+        Vzkaz::create($request->all());
         return redirect('/vzkazy');
     }
 }

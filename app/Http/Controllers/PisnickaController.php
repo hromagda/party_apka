@@ -5,25 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use App\Models\Pisnicka;
+use App\Http\Requests\PisnickaStoreRequest;
+
 
 class PisnickaController extends Controller
 {
     use AuthorizesRequests;
     public function index()
     {
-        return view('pisnicky', ['pisnicky' => \App\Models\Pisnicka::all()]);
+        $pisnicky = \App\Models\Pisnicka::paginate(10); // paginace pro 10 záznamů na stránku
+        return view('pisnicky', compact('pisnicky'));
     }
 
-    public function store(Request $request)
+    public function store(PisnickaStoreRequest $request)
     {
-
-        $request->validate([
-            'interpret' => 'required',
-            'nazev' => 'required',
-            'objednavatel' => 'required',
-        ]);
-
-        \App\Models\Pisnicka::create($request->all());
+        Pisnicka::create($request->all());
         return redirect('/pisnicky');
     }
 

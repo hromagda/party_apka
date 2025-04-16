@@ -14,7 +14,8 @@
         <!-- Scripts -->
         @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased">
+    <body class="font-sans antialiased d-flex flex-column min-vh-100">
+    <div class="flex-grow-1">
         <div class="min-h-screen bg-gray-100">
             {{-- @include('layouts.navigation') --}}
 
@@ -32,5 +33,11 @@
                 @yield('content')
             </main>
         </div>
+    </div>
+
+    <!-- Text na dně stránky -->
+    <div class="footer-text text-center mt-5">
+        <p>Pro milé hosty vytvořila Magda ❤️</p>
+    </div>
     </body>
 </html>

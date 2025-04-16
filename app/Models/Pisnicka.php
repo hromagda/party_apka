@@ -11,6 +11,6 @@ class Pisnicka extends Model
 
     public function getZahranoTextAttribute()
     {
-        return $this->zahrano ? 'Zahráno' : 'Nezahráno';
+        return $this->zahrano ? 'Zahráno' : 'Čeká ve frontě';
     }
 }

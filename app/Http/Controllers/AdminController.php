@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\Fotka;
+use App\Models\Vzkaz;
+use Spatie\Permission\Models\Role;
+use App\Http\Requests\Admin\UserUpdateRequest;
 
 class AdminController extends Controller
 {
@@ -22,25 +26,26 @@ class AdminController extends Controller
     }
 
     // Metoda pro zobrazení formuláře pro editaci uživatele
-    public function edit(User $user)
+    public function edit($id)
     {
-        return view('admin.edit', compact('user')); // Předáme uživatele do pohledu pro editaci
+        $user = User::findOrFail($id);
+        $roles = Role::all();
+
+        return view('admin.edit', compact('user', 'roles'));
     }
 
     // Metoda pro aktualizaci údajů uživatele
-    public function update(Request $request, User $user)
+    public function update(UserUpdateRequest $request, $id)
     {
-        // Validace vstupních dat (přidání pravidel podle potřeby)
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            // Přidej další validace podle potřeby
+        $user = User::findOrFail($id);
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email,
         ]);
 
-        // Aktualizace údajů uživatele
-        $user->update($validated);
+        $user->syncRoles([$request->role]);
 
-        return redirect()->route('user-management.index')->with('success', 'Uživatel byl úspěšně aktualizován.');
+        return redirect()->route('admin.index')->with('success', 'Uživatel byl upraven.');
     }
 
     // Metoda pro smazání uživatele
@@ -48,6 +53,26 @@ class AdminController extends Controller
     {
         $user->delete(); // Smazání uživatele z databáze
 
-        return redirect()->route('user-management.index')->with('success', 'Uživatel byl úspěšně smazán.');
+        return redirect()->route('admin.index')->with('success', 'Uživatel byl úspěšně smazán.');
+    }
+
+    public function destroyFotka(Fotka $fotka)
+    {
+        // smažeme soubor ze storage
+        try {
+            \Storage::disk('public')->delete('fotky/' . $fotka->nazev_souboru);
+            $fotka->delete();
+        } catch (\Exception $e) {
+            return back()->with('error', 'Chyba při mazání fotky: ' . $e->getMessage());
+        }
+        $fotka->delete();
+
+        return back()->with('success', 'Fotka byla úspěšně smazána.');
+    }
+
+    public function destroyVzkaz(Vzkaz $vzkaz)
+    {
+        $vzkaz->delete();
+        return back()->with('success', 'Vzkaz byl úspěšně smazán.');
     }
 }

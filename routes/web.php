@@ -30,6 +30,7 @@ Route::post('/fotky', [FotkaController::class, 'store'])->name('fotky.store');
 // Login a registrace pro administrátory a DJ
 require __DIR__.'/auth.php';
 
+
 // Zajištění přístupu pro přihlášené
 Route::middleware(['auth', 'verified'])->group(function () {
 Route::get('/dashboard', function () {
@@ -41,8 +42,15 @@ Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit')
 
 // Admin routes pro administrátory
 Route::middleware(['auth', 'role:admin'])->group(function () {
-Route::get('/admin', [AdminController::class, 'index'])->name('user-management.index');
-Route::get('/admin/edit/{user}', [AdminController::class, 'edit'])->name('admin.edit');
-Route::put('/admin/edit/{user}', [AdminController::class, 'update'])->name('admin.update');
-Route::delete('/admin/delete/{user}', [AdminController::class, 'destroy'])->name('admin.delete');
+    // Správa uživatelů
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+    Route::get('/admin/edit/{user}', [AdminController::class, 'edit'])->name('admin.edit');
+    Route::put('/admin/edit/{user}', [AdminController::class, 'update'])->name('admin.update');
+    Route::delete('/admin/delete/{user}', [AdminController::class, 'destroy'])->name('admin.delete');
+
+    // Správa aplikace – mazání fotek a vzkazů
+    Route::delete('/admin/fotky/{fotka}', [\App\Http\Controllers\AdminController::class, 'destroyFotka'])->name('admin.fotky.delete');
+    Route::delete('/admin/vzkazy/{vzkaz}', [\App\Http\Controllers\AdminController::class, 'destroyVzkaz'])->name('admin.vzkazy.delete');
 });
+
+

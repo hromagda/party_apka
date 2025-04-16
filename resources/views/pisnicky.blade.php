@@ -5,8 +5,8 @@
 
         {{-- Zpět domů --}}
         <div class="mb-3 text-start">
-            <a href="{{ route('home') }}" class="btn btn-light back-arrow">
-                <i class="bi bi-arrow-left-circle-fill"></i> Zpět domů
+            <a href="{{ route('home') }}" class="btn btn-light back-arrow" style="color: black">
+                <i class="bi blue-arrow bi-arrow-left-circle-fill"></i> Zpět domů
             </a>
         </div>
 
@@ -30,7 +30,7 @@
                             <label for="objednavatel" class="form-label">Kdo objednává</label>
                             <input type="text" class="form-control" id="objednavatel" name="objednavatel" required>
                         </div>
-                        <button type="submit" class="btn text-white" style="background-color: #64b5f6;">Odeslat přání</button>
+                        <button type="submit" class="btn text-white bg-modra">Odeslat přání</button>
                     </form>
                 </div>
             </div>
@@ -39,38 +39,41 @@
         {{-- Seznam přání --}}
         <div class="pisnicky-list">
             <h4 class="pisnicky-title">Seznam přání 🎶</h4>
-            <table class="table table-bordered shadow-sm">
-                <thead>
-                <tr>
-                    <th>Interpret</th>
-                    <th>Název písničky</th>
-                    <th>Od</th>
-                    <th>Status</th>
-                    @can('oznacit_pisnicku_jako_zahranou')
-                        <th>Akce</th>
-                    @endcan
-                </tr>
-                </thead>
-                <tbody>
+            <div class="pisnicky-table">
+                <div class="pisnicky-header">
+                    <div class="pisnicky-column">Písnička</div>
+                    <div class="pisnicky-column">Interpret</div>
+                    <div class="pisnicky-column">Objednavatel</div>
+                    <div class="pisnicky-column">Stav</div>
+                    <div class="pisnicky-column">Akce</div>
+                </div>
                 @foreach ($pisnicky as $pisnicka)
-                    <tr class="@if($pisnicka->zahrano) zahrano @endif">
-                        <td>{{ $pisnicka->interpret }}</td>
-                        <td>{{ $pisnicka->nazev }}</td>
-                        <td>{{ $pisnicka->objednavatel }}</td>
-                        <td>{{ $pisnicka->zahrano_text }}</td>
-                        @can('oznacit_pisnicku_jako_zahranou')
-                            <td>
+                    <div class="pisnicky-row @if($pisnicka->zahrano) zahrano @endif">
+                        <div class="pisnicky-column">{{ $pisnicka->nazev }}</div>
+                        <div class="pisnicky-column">{{ $pisnicka->interpret }}</div>
+                        <div class="pisnicky-column">{{ $pisnicka->objednavatel }}</div>
+                        <div class="pisnicky-column">
+                            <span class="zahrano-text">{{ $pisnicka->zahrano_text }}</span>
+                        </div>
+                        <div class="pisnicky-column">
+                            @can('oznacit_pisnicku_jako_zahranou')
                                 @if(!$pisnicka->zahrano)
                                     <form action="{{ route('pisnicky.zahrano', $pisnicka->id) }}" method="POST">
                                         @csrf
                                         <button type="submit" class="btn btn-warning btn-sm">Zahráno</button>
                                     </form>
                                 @endif
-                            </td>
-                        @endcan
-                    </tr>
+                            @endcan
+                        </div>
+                    </div>
                 @endforeach
-                </tbody>
-            </table>
+            </div>
+
+            {{-- Paginace --}}
+            <div class="pagination-wrapper mt-4">
+                @include('components.pagination', ['collection' => $pisnicky])
+            </div>
+
         </div>
+    </div>
 @endsection

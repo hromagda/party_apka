@@ -1,37 +1,50 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container py-4">
-        <h2 class="mb-4" style="font-family: 'Dancing Script', cursive; color: #ba68c8;">Zanech vzkaz 🎈</h2>
+    <div class="container pisnicky-container">
 
-        <div class="row g-4">
-            <div class="col-12 col-md-6">
-                <form method="POST" action="{{ route('vzkazy.store') }}">
-                    @csrf
-                    <div class="mb-3">
-                        <label for="jmeno" class="form-label">Jméno</label>
-                        <input type="text" class="form-control" id="jmeno" name="jmeno" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="text" class="form-label">Vzkaz</label>
-                        <textarea class="form-control" id="text" name="text" rows="3" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Odeslat vzkaz</button>
-                </form>
+        {{-- Zpět domů --}}
+        <div class="mb-3 text-start">
+            <a href="{{ route('home') }}" class="btn btn-light back-arrow" style="color: black">
+                <i class="bi purple-arrow bi-arrow-left-circle-fill"></i> Zpět domů
+            </a>
+        </div>
+
+        <h2 class="pisnicky-title" style="color: #ba68c8;">Napiš vzkaz </h2>
+
+        {{-- Formulář --}}
+
+        <div class="mb-4">
+            <div class="card shadow-sm pisnicky-form">
+                <div class="card-body">
+                    <form method="POST" action="{{ route('vzkazy.store') }}">
+                        @csrf
+                        <div class="mb-3">
+                            <label for="jmeno" class="form-label">Tvé jméno</label>
+                            <input type="text" class="form-control" id="jmeno" name="jmeno" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="text" class="form-label">Tvůj vzkaz</label>
+                            <textarea class="form-control" id="text" name="text" rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn text-white bg-fialova">Odeslat vzkaz</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        {{-- Seznam vzkazů --}}
+        <div class="pisnicky-list">
+            <h4 class="pisnicky-title" style="color: #ba68c8;">Vzkazy od srdce 💌</h4>
+            <div class="vzkazy-wrapper">
+                @foreach ($vzkazy as $vzkaz)
+                    @include('components.vzkaz-bubliny', ['vzkaz' => $vzkaz, 'barvy' => $barvy])
+                @endforeach
             </div>
 
-            <div class="col-12 col-md-6">
-                <h4 class="mb-3">Vzkazy 💌</h4>
-                @foreach ($vzkazy as $vzkaz)
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <blockquote class="blockquote mb-0">
-                                <p>{{ $vzkaz->text }}</p>
-                                <footer class="blockquote-footer">{{ $vzkaz->jmeno }}</footer>
-                            </blockquote>
-                        </div>
-                    </div>
-                @endforeach
+            {{-- Paginace --}}
+            <div class="pagination-wrapper mt-4">
+                @include('components.pagination', ['collection' => $vzkazy])
             </div>
         </div>
     </div>

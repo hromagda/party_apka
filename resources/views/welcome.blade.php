@@ -8,13 +8,11 @@
         </div>
         <h1 class="mb-4">Vítejte na páááárty!<br>Co si přejete udělat?</h1>
 
-        <!-- Logout tlačítko pro přihlášené -->
+        <!-- Zobrazení informace o přihlášení a roli uživatele -->
         @auth
             <div class="mb-4">
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" class="btn btn-danger">Logout</button>
-                </form>
+                <p>Jste přihlášen jako: <strong>{{ Auth::user()->name }}</strong></p>
+
             </div>
         @endauth
 
@@ -46,11 +44,13 @@
 
             <!-- Správa uživatelů – pouze pro admina -->
             @can('spravovat_uzivatele')
-                <div class="col-12 col-md-6 mb-4 d-flex align-items-stretch">
-                    <div class="party-card shadow p-4 rounded green-card h-100" onclick="window.location.href='{{ route('user-management.index') }}'">
-                        <h3 class="card-title">Správa uživatelů</h3>
-                        <p class="card-text">Administrace účastníků oslavy a jejich oprávnění.</p>
+                <div class="row">
+                <div class="col-12 mb-4 d-flex justify-content-center">
+                    <div class="party-card shadow p-4 rounded green-card h-100" onclick="window.location.href='{{ route('admin.index') }}'">
+                        <h3 class="card-title">Správa aplikace</h3>
+                        <p class="card-text">Administrace uživatelů a údržba aplikace.</p>
                     </div>
+                </div>
                 </div>
             @endcan
         </div>
@@ -63,5 +63,17 @@
                 <a href="{{ route('register') }}" class="btn btn-outline-secondary">Registrovat se</a>
             </div>
         </div>
+
+        <!-- Logout tlačítko pro přihlášené -->
+        @auth
+            <div class="row mt-5">
+                <div class="col-12 text-center">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="btn btn-danger">Odhlásit se</button>
+                    </form>
+                </div>
+            </div>
+        @endauth
     </div>
 @endsection

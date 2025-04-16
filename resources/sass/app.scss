@@ -10,11 +10,49 @@
 //Bootstrap ikony
 @import 'bootstrap-icons/font/bootstrap-icons.css';
 
+//Tridy pro casto opakovane barvy
+// Barvy podle karet z welcome.blade.php
+$barva-modra: #64b5f6;
+$barva-fialova: #ba68c8;
+$barva-zluta: #fbc02d;
+
+// Pozadí
+.bg-modra {
+    background-color: $barva-modra !important;
+}
+
+.bg-fialova {
+    background-color: $barva-fialova !important;
+}
+
+.bg-zluta {
+    background-color: $barva-zluta !important;
+}
+
+// Texty (pokud budeš někde potřebovat barevný text)
+.text-modra {
+    color: $barva-modra !important;
+}
+
+.text-fialova {
+    color: $barva-fialova !important;
+}
+
+.text-zluta {
+    color: $barva-zluta !important;
+}
+
+//--------------------------------------------------------------
+
 body {
     background: #e3f2fd; /* světle modrá */
     text-align: center;
     color: #0d47a1;
     font-family: 'Segoe UI', sans-serif;
+
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 h1, h2, h3 {
@@ -55,6 +93,7 @@ h1, h2, h3 {
     color: #0d47a1 !important; /* tmavě modrý text pro lepší kontrast */
 }
 
+//FOOTER-------------------------------------------------------------------
 .footer-text {
     font-size: 1.2rem;
     color: #0d47a1;
@@ -81,12 +120,11 @@ h1, h2, h3 {
     color: white;
 }
 
-//PISNICKY sablona
+//PISNICKY sablona--------------------------------------------------------------------
 .pisnicky-container {
     background-color: #e3f2fd;
     padding: 1rem;
 
-    // Jen nadpis má být krasopis
     h2 {
         font-family: 'Dancing Script', cursive;
         color: #64b5f6;
@@ -99,7 +137,7 @@ h1, h2, h3 {
 
 .pisnicky-title {
     color: #64b5f6;
-    font-family: 'Dancing Script', cursive; /* This font is applied to both the song request and list titles */
+    font-family: 'Dancing Script', cursive;
     font-size: 2.5rem;
     font-weight: bold;
     text-align: center;
@@ -109,7 +147,7 @@ h1, h2, h3 {
 .pisnicky-form {
     max-width: 600px;
     margin: 0 auto;
-    font-family: 'Segoe UI', sans-serif; // normální písmo pro form
+    font-family: 'Segoe UI', sans-serif;
 }
 
 .pisnicky-form label,
@@ -124,36 +162,76 @@ h1, h2, h3 {
     margin: 2rem auto;
     font-family: 'Segoe UI', sans-serif;
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
+    .pisnicky-table {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        .pisnicky-header,
+        .pisnicky-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem;
+            background-color: #e3f2fd;
+            border-radius: 5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .pisnicky-column {
+            flex: 1;
+            text-align: center;
+            font-size: 1rem;  // Definování velikosti písma pro mobilní zařízení
+        }
+
+        .pisnicky-header {
+            font-weight: bold;
+            background-color: #64b5f6;
+            color: white;
+        }
+
+        .pisnicky-row {
+            background-color: white;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .zahrano {
+            background-color: #bbdefb !important; /* světle fialová */
+            font-style: italic;
+            font-weight: bold;
+            color: #1976d2;
+        }
+
+        .btn-warning {
+            background-color: #f39c12;
+            color: white;
+        }
     }
 
-    th {
-        background-color: #64b5f6;
-        color: white;
-        text-align: left;
-        padding: 0.75rem;
+    // Responzivní úpravy
+    @media (max-width: 768px) {
+        .pisnicky-table {
+            .pisnicky-header,
+            .pisnicky-row {
+                flex-direction: column; // Na mobilu budou sloupce pod sebou
+                text-align: left; // Zarovnání textu vlevo
+            }
+
+            .pisnicky-column {
+                font-size: 0.9rem; // Menší písmo pro mobilní zařízení
+                margin-bottom: 0.5rem;
+            }
+
+            .pisnicky-header {
+                font-size: 1.2rem; // Mírně větší písmo pro hlavičky
+            }
+        }
     }
 
-    td {
-        background-color: white;
-        padding: 0.75rem;
-        border-bottom: 1px solid #ccc;
-    }
-
-    // Vylepšení pro zahrané písničky
-    tr.zahrano {
-        background-color: #d1c4e9 !important; /* světle fialová */
-        font-style: italic;
-        font-weight: bold; /* Tučný text pro lepší vizuální důraz */
-        color: #6a1b9a; /* Tmavší fialová pro text */
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Jemný stín pro zvýraznění řádku */
-    }
-
-    td.zahrano-text {
-        color: #6a1b9a; /* Tmavší fialová pro text */
-        font-weight: bold;
+    @media (max-width: 480px) {
+        .pisnicky-column {
+            font-size: 0.8rem; // Ještě menší písmo pro velmi malé obrazovky
+        }
     }
 }
 
@@ -161,11 +239,17 @@ h1, h2, h3 {
 .back-arrow {
     font-size: 1.1rem;
     font-weight: bold;
-    color: #0d47a1;
+
     text-decoration: none;
 
-    i {
+    .blue-arrow {
         color: #64b5f6;
+        font-size: 1.4rem;
+        margin-right: 0.3rem;
+    }
+
+    .purple-arrow {
+        color: #ba68c8;
         font-size: 1.4rem;
         margin-right: 0.3rem;
     }
@@ -173,4 +257,94 @@ h1, h2, h3 {
     &:hover {
         text-decoration: underline;
     }
+}
+
+
+//SABLONA VZKAZY-----------------------------------------------------------
+
+.vzkazy-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+    align-items: center;
+}
+
+
+.vzkaz-bublina {
+    background-color: #ba68c8;
+    color: white;
+    border-radius: 15px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    min-width: 20rem;      // ✅ nastavíme minimální šířku
+    max-width: 60%;        // ✅ ale zachováme i maximální šířku
+    word-wrap: break-word;
+
+
+}
+
+.vzkaz-text {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+
+//Paginace-----------------------------------------------------------------------
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    gap: 15px; /* mezera mezi tlačítky */
+}
+
+.pagination .page-item {
+    list-style-type: none;
+}
+
+.pagination .page-link {
+    background-color: transparent;
+    color: #64b5f6;
+    border: none;
+    font-size: 1.3rem;
+    padding: 0.5rem 0.8rem;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+
+.pagination .page-item.active .page-link {
+    color: #1976d2;
+    font-weight: bold;
+}
+
+/* Při hover efektu */
+.pagination .page-link:hover {
+    color: #1976d2;
+    transform: scale(1.1);
+}
+
+/* Skrytí textu pro Previous/Next, zůstávají pouze šipky */
+.pagination .page-item:first-child .page-link,
+.pagination .page-item:last-child .page-link {
+    padding: 0.5rem;
+    font-size: 1.5rem;
+}
+
+/* Ikony šipek */
+.pagination .page-link svg {
+    width: 20px;
+    height: 20px;
+    fill: #64b5f6;
+}
+
+.pagination .page-item:first-child .page-link svg {
+    transform: rotate(180deg); /* obrácení šipky pro "Previous" */
+}
+
+/* Paginace - odlišnost pro "First" a "Last" */
+.pagination .page-item:first-child .page-link:hover,
+.pagination .page-item:last-child .page-link:hover {
+    color: #1976d2;
 }
