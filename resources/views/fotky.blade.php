@@ -10,9 +10,10 @@
             </a>
         </div>
 
-        <h2 class="pisnicky-title text-zluta">Nahrej fotku </h2>
+        <!-- Titulní nadpis pro nahrání fotky -->
+        <h2 class="pisnicky-title text-zluta">Nahrej fotku</h2>
 
-        {{-- Formulář --}}
+        {{-- Formulář pro nahrání fotky --}}
         <div class="mb-4">
             <div class="card shadow-sm pisnicky-form">
                 <div class="card-body">

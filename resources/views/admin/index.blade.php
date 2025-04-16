@@ -10,6 +10,7 @@
             </a>
         </div>
 
+        <!-- Nadpis pro správu uživatelů -->
         <h1 class="mt-5">Správa uživatelů</h1>
 
         <!-- Seznam uživatelů -->
@@ -35,7 +36,7 @@
                         @endforeach
                     </td>
                     <td>
-                        <!-- Možnosti pro editaci nebo smazání uživatele -->
+                        <!-- Tlačítka pro editaci a smazání uživatele -->
                         <a href="{{ route('admin.edit', $user->id) }}" class="btn btn-warning">Edit</a>
                         <a href="{{ route('admin.delete', $user->id) }}" class="btn btn-danger">Smazat</a>
                     </td>
@@ -46,6 +47,7 @@
 
         <hr>
 
+        <!-- Sekce pro správu aplikace -->
         <h2 class="mt-5">Správa aplikace</h2>
 
         {{-- Vzkazy --}}
@@ -69,6 +71,7 @@
                             <td>{{ $vzkaz->jmeno }}</td>
                             <td>{{ $vzkaz->text }}</td>
                             <td>
+                                <!-- Formulář pro smazání vzkazu -->
                                 <form action="{{ route('admin.vzkazy.delete', $vzkaz->id) }}" method="POST" onsubmit="return confirm('Opravdu smazat vzkaz?');">
                                     @csrf
                                     @method('DELETE')
@@ -95,6 +98,7 @@
                             <div class="card">
                                 <img src="{{ asset('storage/fotky/' . $fotka->nazev_souboru) }}" class="card-img-top" alt="{{ $fotka->puvodni_nazev }}">
                                 <div class="card-body text-center">
+                                    <!-- Formulář pro smazání fotky -->
                                     <form action="{{ route('admin.fotky.delete', $fotka->id) }}" method="POST" onsubmit="return confirm('Opravdu smazat fotku?');">
                                         @csrf
                                         @method('DELETE')
