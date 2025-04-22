@@ -1,3 +1,37 @@
+# 🎉 Apka Oslava
+
+Tato aplikace byla vytvořena v Laravelu jako webová PWA pro narozeninovou oslavu. Uživatelé mohou:
+
+- Posílat přání písničky
+- Psát vzkazy
+- Nahrávat fotky
+
+Aplikace funguje jako **PWA** – lze ji nainstalovat na plochu/mobil a používat i offline.
+
+## 🛠 Použité technologie
+
+- Laravel 10
+- Laravel Breeze (autentifikace)
+- Spatie Laravel Permission (role a oprávnění)
+- Bootstrap + vlastní SCSS
+- Vite
+- PWA: `manifest.json`, `service-worker.js`
+
+## 🚀 Instalace
+
+```bash
+git clone https://github.com/uzivatel/apka-oslava.git
+cd apka-oslava
+composer install
+npm install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate
+npm run dev
+php artisan serve
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
