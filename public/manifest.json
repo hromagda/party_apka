@@ -1,0 +1,22 @@
+{
+    "name": "Apka Oslava",
+    "short_name": "Oslava",
+    "description": "Webová aplikace pro oslavy s písničkami a vzkazy.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#e3f2fd",
+    "theme_color": "#ba68c8",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "/icons/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/icons/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
