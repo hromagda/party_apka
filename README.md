@@ -29,7 +29,7 @@ Aplikace je navíc dostupná jako **PWA** (Progressive Web App), takže si ji u�
 
 | Kategorie         | Použité nástroje                                 |
 |------------------|--------------------------------------------------|
-| Backend          | Laravel 10                                       |
+| Backend          | Laravel 12                                       |
 | Frontend         | Vite, Blade, Bootstrap 5, vlastní SCSS           |
 | Autentifikace    | Laravel Breeze                                   |
 | Role & oprávnění | Spatie Laravel Permission                        |
