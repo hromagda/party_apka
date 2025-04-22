@@ -19,7 +19,7 @@ Aplikace funguje jako **PWA** – lze ji nainstalovat na plochu/mobil a použív
 
 ## 🚀 Instalace
 
-```bash
+# bash
 git clone https://github.com/uzivatel/apka-oslava.git
 cd apka-oslava
 composer install
@@ -28,7 +28,7 @@ cp .env.example .env
 php artisan key:generate
 php artisan migrate
 npm run dev
-php artisan serve
+php artisan serve 
 
 
 
