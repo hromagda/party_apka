@@ -63,4 +63,9 @@ class PisnickaPolicy
     {
         return false;
     }
+
+    public function oznacit_pisnicku_jako_zahranou(User $user, Pisnicka $pisnicka): bool
+    {
+        return $user->hasRole('dj') || $user->hasRole('admin');
+    }
 }

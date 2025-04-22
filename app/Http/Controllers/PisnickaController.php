@@ -56,14 +56,16 @@ class PisnickaController extends Controller
      */
     public function oznacitZahranou($id)
     {
-        // Ověření, zda má uživatel oprávnění označit písničku jako zahranou
-        $this->authorize('oznacit_pisnicku_jako_zahranou');
-
         // Najdeme písničku podle ID, nebo vyvoláme chybu, pokud neexistuje
         $pisnicka = \App\Models\Pisnicka::findOrFail($id);
 
+        // Ověření, zda má uživatel oprávnění označit písničku jako zahranou
+        $this->authorize('oznacit_pisnicku_jako_zahranou', $pisnicka);
+
+
+
         // Nastavíme příznak 'zahrano' na true
-        $pisnicka->zahrano = true;
+        $pisnicka->update(['zahrano' => true]);
         $pisnicka->save(); // Uložíme změnu
 
         // Po úspěšném označení přesměrujeme na seznam písniček

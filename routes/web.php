@@ -21,7 +21,7 @@ Route::post('/pisnicky', [PisnickaController::class, 'store'])->name('pisnicky.s
 // Ochráněné routy pro označení písničky jako zahrané (pouze pro přihlášené s rolí DJ nebo admin)
 // Tato skupina rout chrání funkci označení písničky jako zahrané. Pouze přihlášení uživatelé s rolí DJ nebo admin mohou tuto akci provádět.
 Route::middleware(['auth', 'role:dj|admin'])->group(function () {
-    Route::post('/pisnicky/{id}/zahrano', [PisnickaController::class, 'oznacitZahranou'])->name('pisnicky.zahrano');
+    Route::patch('/pisnicky/{id}/zahrano', [PisnickaController::class, 'oznacitZahranou'])->name('pisnicky.zahrano');
 });
 
 // Vzkazy – dostupné pro všechny (hosté i přihlášení)

@@ -27,13 +27,13 @@ class RolePermissionSeeder extends Seeder
         ];
 
         foreach ($permissions as $permission) {
-            Permission::firstOrCreate(['name' => $permission]);
+            Permission::firstOrCreate(['name' => $permission, 'guard_name' => 'web']);
         }
 
         // Vytvoření rolí
-        $hostRole = Role::firstOrCreate(['name' => 'host']);
-        $djRole = Role::firstOrCreate(['name' => 'dj']);
-        $adminRole = Role::firstOrCreate(['name' => 'admin']);
+        $hostRole = Role::firstOrCreate(['name' => 'host', 'guard_name' => 'web']);
+        $djRole = Role::firstOrCreate(['name' => 'dj', 'guard_name' => 'web']);
+        $adminRole = Role::firstOrCreate(['name' => 'admin', 'guard_name' => 'web']);
 
         // Přiřazení oprávnění k rolím
         $hostRole->syncPermissions(['pridat_pisnicku', 'pridat_vzkaz', 'pridat_fotku']);

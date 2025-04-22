@@ -64,6 +64,7 @@
                                 @if(!$pisnicka->zahrano)
                                     <form action="{{ route('pisnicky.zahrano', $pisnicka->id) }}" method="POST">
                                         @csrf
+                                        @method('PATCH')
                                         <button type="submit" class="btn btn-warning btn-sm">Zahráno</button>
                                     </form>
                                 @endif

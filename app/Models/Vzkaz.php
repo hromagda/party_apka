@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Vzkaz extends Model
 {
+
+    use HasFactory;
     /**
      * Určuje název tabulky, která bude použita pro tento model.
      * V tomto případě je to tabulka 'vzkazy'.

@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Pisnicka extends Model
 {
+
+    use HasFactory;
     /**
      * Určuje název tabulky, kterou tento model používá.
      *
