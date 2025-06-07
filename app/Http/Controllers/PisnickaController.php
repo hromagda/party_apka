@@ -71,4 +71,10 @@ class PisnickaController extends Controller
         // Po úspěšném označení přesměrujeme na seznam písniček
         return redirect()->route('pisnicky.index');
     }
+    public function getPisnicky()
+    {
+        $pisnicky = Pisnicka::paginate(10); // Můžeš upravit podle potřeby
+        return response()->json($pisnicky); // Vrátí data ve formátu JSON
+    }
+
 }

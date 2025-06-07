@@ -52,4 +52,10 @@ class VzkazController extends Controller
         // Po uložení přesměrujeme uživatele na seznam vzkazů
         return redirect('/vzkazy');
     }
+
+    public function getVzkazy()
+    {
+        $vzkazy = Vzkaz::latest()->paginate(10); // Můžeš upravit podle potřeby
+        return response()->json($vzkazy); // Vrátí data ve formátu JSON
+    }
 }
