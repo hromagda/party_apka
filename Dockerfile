@@ -25,6 +25,9 @@ COPY . /var/www/html
 # Povolení .htaccess (kvůli mod_rewrite)
 RUN a2enmod rewrite
 
+# Přesměrování DocumentRoot na Laravel public složku
+RUN sed -i 's|DocumentRoot /var/www/html|DocumentRoot /var/www/html/public|' /etc/apache2/sites-available/000-default.conf
+
 # Nastavení oprávnění
 RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 755 /var/www/html/storage
