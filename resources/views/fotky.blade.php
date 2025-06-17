@@ -11,7 +11,7 @@
         </div>
 
         <!-- Titulní nadpis pro nahrání fotky -->
-        <h2 class="pisnicky-title text-zluta">Nahrej fotku</h2>
+        <h2 class="pisnicky-title text-zluta">Nahraj fotku</h2>
 
         {{-- Formulář pro nahrání fotky --}}
         <div class="mb-4">
