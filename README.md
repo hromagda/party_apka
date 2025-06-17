@@ -11,6 +11,17 @@ Aplikace je navíc dostupná jako **PWA** (Progressive Web App), takže si ji u�
 
 ---
 
+## Náhled aplikace
+
+Ve složce `/screenshots` najdete ukázky aplikace:
+- Úvodní obrazovka
+- Formulář přání písničky
+- Formulář napsání vzkazu
+- Vložení fotky
+- Admin sekce
+  
+---
+
 ## ✨ Funkce
 
 - ✅ Odeslání přání písničky (interpret, název, jméno hosta)
