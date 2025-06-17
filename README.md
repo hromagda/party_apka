@@ -17,8 +17,8 @@ Ve složce `/screenshots` najdete ukázky aplikace:
 - Úvodní obrazovka
 - Formulář přání písničky
 - Formulář napsání vzkazu
-- Vložení fotky
-- Admin sekce
+- Vložení fotky ukázáno ve videu zde: https://drive.google.com/file/d/1drk7L48JN92UtYxoP0lQlBbWiTVVSaf9/view?usp=drive_link
+- Admin sekce ve videu zde: https://drive.google.com/file/d/1c8PMNlJW2uUdxLKolAekWzOejZUxATte/view?usp=drive_link
   
 ---
 
